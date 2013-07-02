@@ -28,6 +28,7 @@ import org.infinispan.container.entries.InternalCacheValue;
 import org.infinispan.loaders.AbstractCacheStore;
 import org.infinispan.loaders.CacheLoaderConfig;
 import org.infinispan.loaders.CacheLoaderException;
+import org.infinispan.loaders.CacheLoaderMetadata;
 import org.infinispan.loaders.keymappers.DefaultTwoWayKey2StringMapper;
 import org.infinispan.loaders.keymappers.TwoWayKey2StringMapper;
 import org.infinispan.loaders.keymappers.UnsupportedKeyTypeException;
@@ -44,6 +45,7 @@ import java.net.InetSocketAddress;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
+@CacheLoaderMetadata(configurationClass = MemcachedCacheStoreConfig.class)
 public class MemcachedCacheStore extends AbstractCacheStore {
 
     private Log log = LogFactory.getLog(MemcachedCacheStore.class);

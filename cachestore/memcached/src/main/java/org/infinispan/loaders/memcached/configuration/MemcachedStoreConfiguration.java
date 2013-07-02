@@ -27,8 +27,8 @@ import org.infinispan.util.TypedProperties;
 @BuiltBy(MemcachedStoreConfigurationBuilder.class)
 public class MemcachedStoreConfiguration extends AbstractStoreConfiguration implements LegacyLoaderAdapter<MemcachedCacheStoreConfig> {
 
-    private String hostname;
-    private int port;
+    private String hostname = MemcachedCacheStoreConfig.DEFAULT_HOSTNAME;
+    private int port = MemcachedCacheStoreConfig.DEFAULT_PORT;
 
     public MemcachedStoreConfiguration(String hostname, int port, boolean purgeOnStartup, boolean purgeSynchronously, int purgerThreads, boolean fetchPersistentState,
                                        boolean ignoreModifications, TypedProperties properties, AsyncStoreConfiguration async, SingletonStoreConfiguration singletonStore) {

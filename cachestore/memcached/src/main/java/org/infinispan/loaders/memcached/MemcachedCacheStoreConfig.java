@@ -23,8 +23,8 @@ import org.infinispan.loaders.AbstractCacheStoreConfig;
 
 public class MemcachedCacheStoreConfig extends AbstractCacheStoreConfig {
 
-    private static final String DEFAULT_HOSTNAME = "localhost";
-    private static final int DEFAULT_PORT = 11211;
+    public static final String DEFAULT_HOSTNAME = "localhost";
+    public static final int DEFAULT_PORT = 11211;
 
     private String hostname = DEFAULT_HOSTNAME;
     private int port = DEFAULT_PORT;

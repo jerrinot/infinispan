@@ -27,7 +27,7 @@ import javax.xml.stream.XMLStreamException;
 
 @Namespaces({
         @Namespace(uri = "urn:infinispan:config:memcached:5.3", root = "memcachedStore"),
-        @Namespace(root = "memcached")
+        @Namespace(root = "memcachedStore")
 })
 public class MemcachedStoreConfigurationParser53 implements ConfigurationParser {
 
@@ -40,10 +40,7 @@ public class MemcachedStoreConfigurationParser53 implements ConfigurationParser 
         Element element = Element.forName(reader.getLocalName());
         switch (element) {
             case MEMCACHED_STORE: {
-                parseMemcachedCacheStore(
-                        reader,
-                        builder.loaders().addLoader(
-                                MemcachedStoreConfigurationBuilder.class));
+                parseMemcachedCacheStore(reader, builder.loaders().addLoader(MemcachedStoreConfigurationBuilder.class));
                 break;
             }
             default: {
