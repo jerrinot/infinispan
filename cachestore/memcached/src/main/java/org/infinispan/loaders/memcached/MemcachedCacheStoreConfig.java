@@ -21,5 +21,31 @@ package org.infinispan.loaders.memcached;
 
 import org.infinispan.loaders.AbstractCacheStoreConfig;
 
-public class MemcachedStoreConfig extends AbstractCacheStoreConfig {
+public class MemcachedCacheStoreConfig extends AbstractCacheStoreConfig {
+
+    private static final String DEFAULT_HOSTNAME = "localhost";
+    private static final int DEFAULT_PORT = 11211;
+
+    private String hostname = DEFAULT_HOSTNAME;
+    private int port = DEFAULT_PORT;
+
+    public MemcachedCacheStoreConfig() {
+        setCacheLoaderClassName(MemcachedCacheStore.class.getName());
+    }
+
+    public String getHostname() {
+        return hostname;
+    }
+
+    public void setHostname(String hostname) {
+        this.hostname = hostname;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
+    }
 }

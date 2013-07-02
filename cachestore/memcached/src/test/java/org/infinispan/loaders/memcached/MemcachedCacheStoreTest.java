@@ -23,6 +23,7 @@ import org.infinispan.loaders.BaseCacheStoreTest;
 import org.infinispan.loaders.CacheLoaderException;
 import org.infinispan.loaders.CacheStore;
 import org.infinispan.loaders.keymappers.UnsupportedKeyTypeException;
+import org.infinispan.loaders.memcached.configuration.MemcachedStoreConfiguration;
 import org.testng.annotations.Test;
 
 @Test(groups = "unit", testName = "loaders.memcached.MemcachedCacheStoreTest")
@@ -31,7 +32,7 @@ public class MemcachedCacheStoreTest extends BaseCacheStoreTest {
     @Override
     protected CacheStore createCacheStore() throws Exception {
         CacheStore store = new MemcachedCacheStore();
-        MemcachedStoreConfig config = new MemcachedStoreConfig();
+        MemcachedCacheStoreConfig config = new MemcachedCacheStoreConfig();
         config.setPurgeSynchronously(true);
         store.init(config, getCache(), getMarshaller());
         store.start();

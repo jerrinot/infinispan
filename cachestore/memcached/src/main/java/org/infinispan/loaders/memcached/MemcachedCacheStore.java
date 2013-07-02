@@ -52,18 +52,24 @@ public class MemcachedCacheStore extends AbstractCacheStore {
     private TwoWayKey2StringMapper keyMapper;
     private Set<Object> keys = new ConcurrentHashSet<Object>();
 
-    private String hostname = "localhost";
-    private int port = 11211;
+    private String hostname;
+    private int port;
+
+    private MemcachedCacheStoreConfig config;
 
     @Override
     public void init(CacheLoaderConfig clc, Cache<?, ?> cache, StreamingMarshaller m)
             throws CacheLoaderException {
         super.init(clc, cache, m);
+        this.config = (MemcachedCacheStoreConfig) clc;
     }
 
     @Override
     public void start() throws CacheLoaderException {
         keyMapper = new DefaultTwoWayKey2StringMapper();
+        hostname = config.getHostname();
+        port = config.getPort();
+
         ConnectionFactory connectionFactory = new ConnectionFactoryBuilder().setProtocol(ConnectionFactoryBuilder.Protocol.BINARY).build();
         try {
             client = new MemcachedClient(connectionFactory, Arrays.asList(new InetSocketAddress(hostname, port)));
@@ -237,7 +243,7 @@ public class MemcachedCacheStore extends AbstractCacheStore {
 
     @Override
     public Class<? extends CacheLoaderConfig> getConfigurationClass() {
-        return MemcachedStoreConfig.class;
+        return MemcachedCacheStoreConfig.class;
     }
 
     private byte[] marshall(InternalCacheEntry entry) throws IOException, InterruptedException {
